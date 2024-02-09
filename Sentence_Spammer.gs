@@ -1,7 +1,7 @@
 function createSlidesWithRandomSentences() {
   var presentation = SlidesApp.getActivePresentation();
 
-  for (var i = 0; i < 100; i++) { //adjust the "blue number i < 'NUMBER' to change the amount of slides you wanna create, becareful low end devices cry"
+  for (var i = 0; i < 10; i++) { //adjust the "blue number i < 'NUMBER' to change the amount of slides you wanna create, becareful low end devices cry"
     var slide = presentation.appendSlide();
     
     // Generate random background color
@@ -9,7 +9,7 @@ function createSlidesWithRandomSentences() {
     var background = slide.getBackground();
     background.setSolidFill(randomColor);
 
-    // Add main sentence text box
+   // Add main sentence text box
     var mainTextBox = slide.insertShape(SlidesApp.ShapeType.TEXT_BOX);
     var mainTextRange = mainTextBox.getText();
     var randomSentence = generateRandomSentence();
@@ -20,26 +20,52 @@ function createSlidesWithRandomSentences() {
     mainTextBox.setWidth(700); // adjust width for better visibility
     mainTextBox.setHeight(200); // adjust height for better visibility
 
+    // Add drop shadow text box
+    var shadowTextBox = slide.insertShape(SlidesApp.ShapeType.TEXT_BOX);
+    var shadowTextRange = shadowTextBox.getText();
+    shadowTextRange.setText(randomSentence);
+    shadowTextRange.getTextStyle().setFontSize(36); // Adjust font size as needed
+    shadowTextRange.getTextStyle().setBold(false);
+    shadowTextRange.getTextStyle().setForegroundColor('#ffffff'); // white color
+    shadowTextBox.setWidth(700); // adjust width for better visibility
+    shadowTextBox.setHeight(200); // adjust height for better visibility
+    shadowTextBox.setLeft(mainTextBox.getLeft() - 2); // Shift to the right
+    shadowTextBox.setTop(mainTextBox.getTop() - 2); // Shift down
+
+
+
+
     // Add "-ai" text box
     var aiTextBox = slide.insertShape(SlidesApp.ShapeType.TEXT_BOX);
     var aiTextRange = aiTextBox.getText();
     aiTextRange.setText("-ai");
     aiTextRange.getTextStyle().setFontSize(40); // Adjust font size as needed
     aiTextRange.getTextStyle().setBold(false);
-    aiTextRange.getTextStyle().setForegroundColor('#000000'); // black color
+    aiTextRange.getTextStyle().setForegroundColor('#ffffff'); // white color
     aiTextBox.setLeft(500); // Adjust position as needed
     aiTextBox.setTop(90); // Adjust position as needed
     
     // Add disclaimer text box
     var disclaimerTextBox = slide.insertShape(SlidesApp.ShapeType.TEXT_BOX);
     var disclaimerTextRange = disclaimerTextBox.getText();
-    disclaimerTextRange.setText("Everything here is made by AI. Do not come after me, please. I can and will delete this.");
+    disclaimerTextRange.setText("Disclaimer: Everything here is made by AI. Do not come after me, please. I can and will delete this.");
     disclaimerTextRange.getTextStyle().setFontSize(18); // Adjust font size as needed
     disclaimerTextRange.getTextStyle().setBold(true);
     disclaimerTextRange.getTextStyle().setForegroundColor('#FF0000'); // red color
     disclaimerTextBox.setWidth(700); // adjust width for better visibility
     disclaimerTextBox.setHeight(50); // adjust height for better visibility
     disclaimerTextBox.setTop(350); // Adjust position as needed
+
+    // Add bozo text box
+    var bozoTextBox = slide.insertShape(SlidesApp.ShapeType.TEXT_BOX);
+    var bozoTextRange = bozoTextBox.getText();
+    bozoTextRange.setText("Open Source: https://github.com/tropical-vr/Google-Slides-Random-Sentence-Spammer/tree/main (made by me, github's blocked though)");
+    bozoTextRange.getTextStyle().setFontSize(18); // Adjust font size as needed
+    bozoTextRange.getTextStyle().setBold(true);
+    bozoTextRange.getTextStyle().setForegroundColor('#ffffff'); // white color
+    bozoTextBox.setWidth(700); // adjust width for better visibility
+    bozoTextBox.setHeight(50); // adjust height for better visibility
+    bozoTextBox.setTop(280); // Adjust position as needed
   }
 }
 
